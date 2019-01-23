@@ -203,30 +203,24 @@
   <div class="article-content">
     <div class="markdown-body">
       <p></p>
-<p>##Docker</p>
-<p>###1、背景</p>
-<ul>
+<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><h3 id="1、背景"><a href="#1、背景" class="headerlink" title="1、背景"></a>1、背景</h3><ul>
 <li>诞生于2013年，基于Google的Go语言实现</li>
 <li>开源项目，代码托管于<a href="https://github.com/docker/docker" target="_blank" rel="noopener">Github</a></li>
 <li>轻量级的操作系统虚拟化解决方案</li>
 </ul>
-<p>###2、技术原理</p>
-<ul>
+<h3 id="2、技术原理"><a href="#2、技术原理" class="headerlink" title="2、技术原理"></a>2、技术原理</h3><ul>
 <li>内核名字空间</li>
 <li><a href="https://en.wikipedia.org/wiki/Cgroups" target="_blank" rel="noopener">控制组</a></li>
 <li><a href="https://en.wikipedia.org/wiki/UnionFS" target="_blank" rel="noopener">联合文件系统</a></li>
 <li>基础是 Linux 容器(<a href="https://en.wikipedia.org/wiki/LXC" target="_blank" rel="noopener">LXC</a>)技术<br><img src="https://yeasy.gitbooks.io/docker_practice/content/_images/virtualization.png" alt="VM" title="VM"><br><img src="https://yeasy.gitbooks.io/docker_practice/content/_images/docker.png" alt="Docker" title="Docker"></li>
 </ul>
-<p>###3、优势</p>
-<ul>
+<h3 id="3、优势"><a href="#3、优势" class="headerlink" title="3、优势"></a>3、优势</h3><ul>
 <li>快速交付和部署</li>
 <li>更高的虚拟化性能和效率    </li>
 <li>几乎全平台运行，迁移方便</li>
 <li>易于实现自动化管理</li>
 </ul>
-<p>###4、基本概念</p>
-<p>####4.1 镜像</p>
-<ul>
+<h3 id="4、基本概念"><a href="#4、基本概念" class="headerlink" title="4、基本概念"></a>4、基本概念</h3><h4 id="4-1-镜像"><a href="#4-1-镜像" class="headerlink" title="4.1 镜像"></a>4.1 镜像</h4><ul>
 <li>一个只读层被称为一个镜像，镜像是不会被改变的</li>
 <li>镜像不可写，So,镜像是无状态的</li>
 <li>每一个镜像都可能依赖于其他镜像，存在父镜像的概念</li>
@@ -235,72 +229,59 @@
 <li>每个镜像都由很多层次构成，Docker 使用 <a href="http://en.wikipedia.org/wiki/UnionFS" target="_blank" rel="noopener">Union FS</a> 将这些不同的层结合到一个镜像中去</li>
 <li>镜像用来创建容器</li>
 </ul>
-<p>####4.2 容器</p>
-<ul>
+<h4 id="4-2-容器"><a href="#4-2-容器" class="headerlink" title="4.2 容器"></a>4.2 容器</h4><ul>
 <li>容器是从镜像创建的运行实例</li>
 <li>容器存在启动、开始、运行、停止、删除等状态</li>
 <li>因为镜像是只读的，所以容器在启动时，会创建一层可写层作为最上层</li>
 <li>容器是独立运行的，各个容器之间是相互隔离的</li>
 </ul>
-<p>####4.3 仓库</p>
-<ul>
+<h4 id="4-3-仓库"><a href="#4-3-仓库" class="headerlink" title="4.3 仓库"></a>4.3 仓库</h4><ul>
 <li>仓库用于集中存放镜像</li>
 <li>公开&amp;私有仓库</li>
 <li><a href="http://hub.docker.com" target="_blank" rel="noopener">Docker Hub</a></li>
 <li><a href="http://dockerpool.com" target="_blank" rel="noopener">Docker Pool</a></li>
 </ul>
-<p>###5、安装&amp;使用</p>
-<ul>
+<h3 id="5、安装-amp-使用"><a href="#5、安装-amp-使用" class="headerlink" title="5、安装&amp;使用"></a>5、安装&amp;使用</h3><ul>
 <li>Linux内核版本不低于3.10</li>
 </ul>
-<p>####5.1 CentOS</p>
-<ul>
+<h4 id="5-1-CentOS"><a href="#5-1-CentOS" class="headerlink" title="5.1 CentOS"></a>5.1 CentOS</h4><ul>
 <li>推荐使用CentOS7</li>
 <li>官方脚本 (sudo curl -sSL <a href="https://get.docker.com/" target="_blank" rel="noopener">https://get.docker.com/</a> | sh)</li>
 <li>配置随服务启动 (sudo chkconfig docker on)</li>
 </ul>
-<p>####5.2 使用</p>
-<ul>
+<h4 id="5-2-使用"><a href="#5-2-使用" class="headerlink" title="5.2 使用"></a>5.2 使用</h4><ul>
 <li>获取镜像 <strong>docker pull daocloud.io/ubuntu:14.04</strong></li>
 <li>使用镜像，创建容器，运行 Bash 应用，输出 “Hello World”，之后终止容器</li>
 </ul>
 <p><strong>docker run ubuntu:14.04 /bin/bash echo “Hello WaHaHa”</strong></p>
-<p>###6、数据管理</p>
-<p>####6.1 数据卷</p>
-<p>数据卷是一个可供一个或多个容器使用的特殊目录，它绕过<a href="https://en.wikipedia.org/wiki/UnionFS" target="_blank" rel="noopener">Union FS</a>，提供很多有用的特性。数据卷的使用，类似于Linux下的<a href="https://en.wikipedia.org/wiki/Mount_%28Unix%29" target="_blank" rel="noopener">Mount</a></p>
+<h3 id="6、数据管理"><a href="#6、数据管理" class="headerlink" title="6、数据管理"></a>6、数据管理</h3><h4 id="6-1-数据卷"><a href="#6-1-数据卷" class="headerlink" title="6.1 数据卷"></a>6.1 数据卷</h4><p>数据卷是一个可供一个或多个容器使用的特殊目录，它绕过<a href="https://en.wikipedia.org/wiki/UnionFS" target="_blank" rel="noopener">Union FS</a>，提供很多有用的特性。数据卷的使用，类似于Linux下的<a href="https://en.wikipedia.org/wiki/Mount_%28Unix%29" target="_blank" rel="noopener">Mount</a></p>
 <ul>
 <li>数据卷可以在不同的容器之间共用</li>
 <li>对数据卷的修改是立马生效的</li>
 <li>对数据卷的更新，不会影响镜像</li>
 <li>容器停止运行的时候不会删除数据卷</li>
 </ul>
-<p>####6.2 数据卷容器</p>
-<p>当需要在容器之间持续的共享数据的时候，最好使用数据卷容器。数据卷容器，其实就是一个正常的容器，专门用于提供数据卷供其他容器挂载。</p>
-<p>###7、网络</p>
-<p>####7.1 外部访问容器</p>
-<p>容器运行的应用，如Nginx，需要开放对口供外部访问和调用，可以在启动运行是添加 -P 或 -p 参数来指定端口映射。</p>
+<h4 id="6-2-数据卷容器"><a href="#6-2-数据卷容器" class="headerlink" title="6.2 数据卷容器"></a>6.2 数据卷容器</h4><p>当需要在容器之间持续的共享数据的时候，最好使用数据卷容器。数据卷容器，其实就是一个正常的容器，专门用于提供数据卷供其他容器挂载。</p>
+<h3 id="7、网络"><a href="#7、网络" class="headerlink" title="7、网络"></a>7、网络</h3><h4 id="7-1-外部访问容器"><a href="#7-1-外部访问容器" class="headerlink" title="7.1 外部访问容器"></a>7.1 外部访问容器</h4><p>容器运行的应用，如Nginx，需要开放对口供外部访问和调用，可以在启动运行是添加 -P 或 -p 参数来指定端口映射。</p>
 <ul>
 <li>-P 参数，Docker 容器会随机映射一个 49000~49900 的端口到内部容器开放的网络端口</li>
 <li>-p 参数，指定端口映射到内部容器开放的网络端口</li>
 </ul>
-<p>####7.2 容器互联</p>
-<p>端口映射并不是容器之间相互连接的唯一方式，Docker 的 Linking 系统允许同时连接和传输数据对多个容器。在使用 Linking 系统时，Docker 建议对容器进行命名，使用 –name 参数。建立容器之间的连接，使用 –link 参数。简要流程和关系</p>
+<h4 id="7-2-容器互联"><a href="#7-2-容器互联" class="headerlink" title="7.2 容器互联"></a>7.2 容器互联</h4><p>端口映射并不是容器之间相互连接的唯一方式，Docker 的 Linking 系统允许同时连接和传输数据对多个容器。在使用 Linking 系统时，Docker 建议对容器进行命名，使用 –name 参数。建立容器之间的连接，使用 –link 参数。简要流程和关系</p>
 <ul>
 <li>运行一个 DB 容器，命名为 db (<strong>docker run -d –name db training/postgres</strong>)</li>
 <li>现在创建一个 web 容器 (<strong>docker run -d -P –name web –link db:db training/webapp python app.py</strong>)</li>
 <li>创建了 Link 连接的容器，源容器可以提供自身的信息给接收容器</li>
 <li>在本例中，web 作为接收容器，可以访问源容器 db 上的信息，而且我们并没有使用 -p 或者 -P 参数，Docker在两个容器之间创建了一个安全隧道，而不用 DB 容器暴漏端口</li>
 </ul>
-<p>###8、安全</p>
-<ul>
+<h3 id="8、安全"><a href="#8、安全" class="headerlink" title="8、安全"></a>8、安全</h3><ul>
 <li>运行一个容器和核心是通过 Docker 服务端，服务的运行目前需要 Root 权限</li>
 <li>确保只有可信的用户才可以访问 Docker 服务</li>
 <li>Docker 允许在主机和容器之间共享文件夹，很容易让容器突破资源限制</li>
 <li>用户可以使用现有工具，比如 Apparmor, SELinux, GRSEC 来增强安全性</li>
 <li><a href="https://docs.docker.com/engine/security/security/" target="_blank" rel="noopener">Docker Security</a></li>
 </ul>
-<p>###9、Dockerfile</p>
-<p>Dockerfile 允许用户创建自定义的镜像，Dockerfile 由一行行的命令语句组成，支持以 <strong>#</strong> 开头的注释行</p>
+<h3 id="9、Dockerfile"><a href="#9、Dockerfile" class="headerlink" title="9、Dockerfile"></a>9、Dockerfile</h3><p>Dockerfile 允许用户创建自定义的镜像，Dockerfile 由一行行的命令语句组成，支持以 <strong>#</strong> 开头的注释行</p>
 <p>Dockerfile 分为四部分:基础镜像部分、维护者信息、镜像操作指令和容器启动时执行命令</p>
 <ul>
 <li><a href="https://github.com/CentOS/CentOS-Dockerfiles/blob/master/mongodb/centos7/Dockerfile" target="_blank" rel="noopener">Mongodb Dockerfile</a></li>
@@ -310,15 +291,13 @@
 <ul>
 <li><strong>docker build dockerfile/dockerfile</strong></li>
 </ul>
-<p>###10、应用场景</p>
-<ul>
+<h3 id="10、应用场景"><a href="#10、应用场景" class="headerlink" title="10、应用场景"></a>10、应用场景</h3><ul>
 <li>Web应用程序的自动化打包和发布</li>
 <li>自动化测试和持续集成、发布</li>
 <li><a href="https://en.wikipedia.org/wiki/Paas" target="_blank" rel="noopener">Paas</a>环境</li>
 <li>在生产环境部署和调整数据库或其他应用</li>
 </ul>
-<p>###11、常用命令</p>
-<ul>
+<h3 id="11、常用命令"><a href="#11、常用命令" class="headerlink" title="11、常用命令"></a>11、常用命令</h3><ul>
 <li>列出本地已有的镜像 <strong>docker images</strong></li>
 <li>查看正在运行的镜像 <strong>docker ps</strong></li>
 <li>在Docker Index 中搜索镜像 <strong>docker search nginx</strong></li>
