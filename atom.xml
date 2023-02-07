@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>FlyFlower</title>
+  
+  
+  <link href="https://www.shiyf.me/atom.xml" rel="self"/>
+  
+  <link href="https://www.shiyf.me/"/>
+  <updated>2023-02-07T07:20:04.262Z</updated>
+  <id>https://www.shiyf.me/</id>
+  
+  <author>
+    <name>FlyFlower</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://www.shiyf.me/2023/02/07/hello-world/"/>
+    <id>https://www.shiyf.me/2023/02/07/hello-world/</id>
+    <published>2023-02-07T07:20:04.262Z</published>
+    <updated>2023-02-07T07:20:04.262Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new "My New Post"</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ClamAV部署及使用</title>
+    <link href="https://www.shiyf.me/2023/02/06/yuque/ClamAV%E9%83%A8%E7%BD%B2%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
+    <id>https://www.shiyf.me/2023/02/06/yuque/ClamAV%E9%83%A8%E7%BD%B2%E5%8F%8A%E4%BD%BF%E7%94%A8/</id>
+    <published>2023-02-06T10:23:45.000Z</published>
+    <updated>2023-02-07T07:20:04.262Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>RPM 包下载地址<br><a href="https://www.clamav.net/downloads">https://www.clamav.net/downloads</a></p><h2 id="yum-安装"><a href="#yum-安装" class="headerlink" title="yum 安装"></a>yum 安装</h2><pre><code class="bash">sudo yum update -ysudo yum install repl-releasesudo yum install -y openssl openssl-devel libcurl-devel zlib-devel libpng-devel libxml2-devel json-c-devel bzip2-devel pcre2-devel ncurses-develsudo yum install clamav clamd clamav-update</code></pre><h1 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h1><pre><code class="python">sudo yum remove clamav clamd clamav-update</code></pre><h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><p><a href="https://docs.clamav.net/">https://docs.clamav.net/</a></p><h2 id="ClamAV-主要组成部分"><a href="#ClamAV-主要组成部分" class="headerlink" title="ClamAV 主要组成部分"></a>ClamAV 主要组成部分</h2><ul><li>clamd - 后台进程</li><li>clamav - 用户端扫描程序</li><li>clamav-data - 扫描器威胁特征库</li><li>clamav-devel - 扫描器程序依赖</li><li>clamav-lib - 扫描器动态调用库</li><li>clamav-milter - Milter module for the Clam Antivirus scanner</li><li>clamav-update - 更新扫描器威胁特征库</li></ul><h2 id="特征库更新"><a href="#特征库更新" class="headerlink" title="特征库更新"></a>特征库更新</h2><p>配置文件位于/etc/freshclam.conf，可修改更新频率，默认是两小时检查一次更新，找到其中的如下一段，把数值改为 1：</p><pre><code class="bash"># Number of database checks per day.# Default: 12 (every two hours)Checks 1</code></pre><p>去掉配置文件中 UpdateLogFile 选项的注释，并设置日志保存的路径<br>执行<code>freshclam</code>命令更新威胁特征库<br>启动后台更新服务</p><pre><code class="bash">systemctl start clamav-freshclamsystemctl enable clamav-freshclam</code></pre><h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>配置文件路劲：/etc/clamd.d/scan.conf</p><ul><li>去掉 Logfile 选项的注释，日志文件保存在/var/log/clamd.scan</li><li>LogFileMaxSize 选项建议设置为 10M</li><li>修改 LogSyslog 选项为 no</li><li>OnAccessIncludePath 参数设置需要实时监测的目录</li><li>LocalSocket 去掉注释，并修改为/tmp/clamd.socket</li><li>LocalSocketGroup 去掉注释并修改为 clamscan</li><li>LocalSocketMode 去掉注释并修改为 660</li><li>如果需要阻断恶意文件的读写，需要去掉 OnAccessPrevention 选项的注释，并修改为 yes；如果只是进行检测不阻断，只记录日志，则无需修改。</li></ul><p>都修改完毕后，保存退出。<br>执行如下命令创建日志文件：</p><pre><code>touch /var/log/clamd.scanchown clamscan:clamscan /var/log/clamd.scan</code></pre><h2 id="定时扫描和实时监控"><a href="#定时扫描和实时监控" class="headerlink" title="定时扫描和实时监控"></a>定时扫描和实时监控</h2><h3 id="应用目录定时扫描"><a href="#应用目录定时扫描" class="headerlink" title="应用目录定时扫描"></a>应用目录定时扫描</h3><p>每天凌晨 2 点进行 sftp 目录扫描</p><pre><code class="bash">0 2 * * * /usr/bin/clamscan -r -i --quiet -o -l /var/log/clamscan.log --move=/tmp/infected /sftp</code></pre><h3 id="应用目录实时监控"><a href="#应用目录实时监控" class="headerlink" title="应用目录实时监控"></a>应用目录实时监控</h3><p>暂时禁用 会造成被监听目录的 IO 性能受损、缓存性能受损 IO 读写速度差距约 1 倍 缓存性能的影响约 30 倍)</p><h2 id="上报扫描结果"><a href="#上报扫描结果" class="headerlink" title="上报扫描结果"></a>上报扫描结果</h2><h3 id="配置-Logstash"><a href="#配置-Logstash" class="headerlink" title="配置 Logstash"></a>配置 Logstash</h3><p>简介<br>工具发展里程<br>主要用途</p><p>安装<br>几种安装方式<br>源码安装注意内核以及 curl 版本，还需要安装 Python3 模块 cmake<br>各模块说明</p><p>配置<br>配置文件位置<br>主要使用配置<br>更新特征库<br>启动后台服务</p><p>使用<br>定期目录扫描<br>实时文件监控扫描<br>rest-api 调用</p><p>注意事项</p><p>谷歌实际案例</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h1&gt;&lt;p&gt;RPM 包下载地址&lt;br&gt;&lt;a href=&quot;https://www.clamav.net/downloads&quot;&gt;https://www.cl</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>

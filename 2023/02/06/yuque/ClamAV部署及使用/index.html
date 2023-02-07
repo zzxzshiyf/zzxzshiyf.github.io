@@ -1,0 +1,71 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>ClamAV部署及使用</title><meta name="description" content="心有所期 必 全力以赴"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q || []).push(arguments)},i[r].l=1 * new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-YXWYN8RP65', 'shiyf.me');
+ga('send', 'pageview');</script><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="安装RPM 包下载地址https://www.clamav.net/downloads
+yum 安装sudo yum update -y
+sudo yum install repl-release
+sudo yum install -y openssl openssl-devel libcurl-devel zlib-devel libpng-devel libxml2-devel json-c-devel bzip2-devel pcre2-devel ncurses-devel
+sudo yum install clamav clamd clamav-update
+
+卸载sudo yum remove clamav clamd clamav-update
+
+使用官方文档https://docs.clam.."><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="FlyFlower" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">FlyFlower's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">ClamAV部署及使用</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">点击返回顶部</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yum-%E5%AE%89%E8%A3%85"><span class="toc-text">yum 安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD"><span class="toc-text">卸载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="toc-text">官方文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ClamAV-%E4%B8%BB%E8%A6%81%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-text">ClamAV 主要组成部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E5%BA%93%E6%9B%B4%E6%96%B0"><span class="toc-text">特征库更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E6%89%AB%E6%8F%8F%E5%92%8C%E5%AE%9E%E6%97%B6%E7%9B%91%E6%8E%A7"><span class="toc-text">定时扫描和实时监控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%9B%AE%E5%BD%95%E5%AE%9A%E6%97%B6%E6%89%AB%E6%8F%8F"><span class="toc-text">应用目录定时扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%9B%AE%E5%BD%95%E5%AE%9E%E6%97%B6%E7%9B%91%E6%8E%A7"><span class="toc-text">应用目录实时监控</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E6%8A%A5%E6%89%AB%E6%8F%8F%E7%BB%93%E6%9E%9C"><span class="toc-text">上报扫描结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-Logstash"><span class="toc-text">配置 Logstash</span></a></li></ol></li></ol></li></ol></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">ClamAV部署及使用</h1><time class="has-text-grey" datetime="2023-02-06T10:23:45.000Z">2023-02-06</time><article class="mt-2 post-content"><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>RPM 包下载地址<br><a target="_blank" rel="noopener" href="https://www.clamav.net/downloads">https://www.clamav.net/downloads</a></p>
+<h2 id="yum-安装"><a href="#yum-安装" class="headerlink" title="yum 安装"></a>yum 安装</h2><pre><code class="bash">sudo yum update -y
+sudo yum install repl-release
+sudo yum install -y openssl openssl-devel libcurl-devel zlib-devel libpng-devel libxml2-devel json-c-devel bzip2-devel pcre2-devel ncurses-devel
+sudo yum install clamav clamd clamav-update
+</code></pre>
+<h1 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h1><pre><code class="python">sudo yum remove clamav clamd clamav-update
+</code></pre>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><p><a target="_blank" rel="noopener" href="https://docs.clamav.net/">https://docs.clamav.net/</a></p>
+<h2 id="ClamAV-主要组成部分"><a href="#ClamAV-主要组成部分" class="headerlink" title="ClamAV 主要组成部分"></a>ClamAV 主要组成部分</h2><ul>
+<li>clamd - 后台进程</li>
+<li>clamav - 用户端扫描程序</li>
+<li>clamav-data - 扫描器威胁特征库</li>
+<li>clamav-devel - 扫描器程序依赖</li>
+<li>clamav-lib - 扫描器动态调用库</li>
+<li>clamav-milter - Milter module for the Clam Antivirus scanner</li>
+<li>clamav-update - 更新扫描器威胁特征库</li>
+</ul>
+<h2 id="特征库更新"><a href="#特征库更新" class="headerlink" title="特征库更新"></a>特征库更新</h2><p>配置文件位于/etc/freshclam.conf，可修改更新频率，默认是两小时检查一次更新，找到其中的如下一段，把数值改为 1：</p>
+<pre><code class="bash"># Number of database checks per day.
+# Default: 12 (every two hours)
+Checks 1
+</code></pre>
+<p>去掉配置文件中 UpdateLogFile 选项的注释，并设置日志保存的路径<br>执行<code>freshclam</code>命令更新威胁特征库<br>启动后台更新服务</p>
+<pre><code class="bash">systemctl start clamav-freshclam
+systemctl enable clamav-freshclam
+</code></pre>
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>配置文件路劲：/etc/clamd.d/scan.conf</p>
+<ul>
+<li>去掉 Logfile 选项的注释，日志文件保存在/var/log/clamd.scan</li>
+<li>LogFileMaxSize 选项建议设置为 10M</li>
+<li>修改 LogSyslog 选项为 no</li>
+<li>OnAccessIncludePath 参数设置需要实时监测的目录</li>
+<li>LocalSocket 去掉注释，并修改为/tmp/clamd.socket</li>
+<li>LocalSocketGroup 去掉注释并修改为 clamscan</li>
+<li>LocalSocketMode 去掉注释并修改为 660</li>
+<li>如果需要阻断恶意文件的读写，需要去掉 OnAccessPrevention 选项的注释，并修改为 yes；如果只是进行检测不阻断，只记录日志，则无需修改。</li>
+</ul>
+<p>都修改完毕后，保存退出。<br>执行如下命令创建日志文件：</p>
+<pre><code>touch /var/log/clamd.scan
+chown clamscan:clamscan /var/log/clamd.scan
+</code></pre>
+<h2 id="定时扫描和实时监控"><a href="#定时扫描和实时监控" class="headerlink" title="定时扫描和实时监控"></a>定时扫描和实时监控</h2><h3 id="应用目录定时扫描"><a href="#应用目录定时扫描" class="headerlink" title="应用目录定时扫描"></a>应用目录定时扫描</h3><p>每天凌晨 2 点进行 sftp 目录扫描</p>
+<pre><code class="bash">0 2 * * * /usr/bin/clamscan -r -i --quiet -o -l /var/log/clamscan.log --move=/tmp/infected /sftp
+</code></pre>
+<h3 id="应用目录实时监控"><a href="#应用目录实时监控" class="headerlink" title="应用目录实时监控"></a>应用目录实时监控</h3><p>暂时禁用 会造成被监听目录的 IO 性能受损、缓存性能受损 IO 读写速度差距约 1 倍 缓存性能的影响约 30 倍)</p>
+<h2 id="上报扫描结果"><a href="#上报扫描结果" class="headerlink" title="上报扫描结果"></a>上报扫描结果</h2><h3 id="配置-Logstash"><a href="#配置-Logstash" class="headerlink" title="配置 Logstash"></a>配置 Logstash</h3><p>简介<br>工具发展里程<br>主要用途</p>
+<p>安装<br>几种安装方式<br>源码安装注意内核以及 curl 版本，还需要安装 Python3 模块 cmake<br>各模块说明</p>
+<p>配置<br>配置文件位置<br>主要使用配置<br>更新特征库<br>启动后台服务</p>
+<p>使用<br>定期目录扫描<br>实时文件监控扫描<br>rest-api 调用</p>
+<p>注意事项</p>
+<p>谷歌实际案例</p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2023/02/07/hello-world/" title="Hello World"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">上一页: Hello World</span></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> FlyFlower 2023</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
