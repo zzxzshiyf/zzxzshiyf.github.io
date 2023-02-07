@@ -1,0 +1,73 @@
+# main menu navigation
+menu:
+  Home: /
+  About: /about
+  Archive: /archives
+
+widgets:
+  - tag
+  - archive
+  - recent_posts
+  - category
+  - profile
+
+# social config
+social:
+  twitter: 
+  github: haojen
+
+user:
+  name: FlyFlower
+  avatar: images/avatar.jpg
+  location: London
+  description: 心有所期 必 全力以赴
+  footnotes: # footnotes
+
+# documents: https://github.com/utterance/utterances
+# API config: https://utteranc.es/
+comment_utteranc:
+  enable: false
+  repo: Haojen/Claudia-theme-blog # your blog repo
+
+
+# documents: https://valine.js.org/quickstart.html
+comment_valine:
+  enable: false
+  appId:
+  appKey:
+
+comment_disqus:
+    enable: false
+    url:  # the url of your website main domain like this https://xxx.xxx/
+    name: # the short name in disqus
+
+# dark
+# light
+# user-can-set
+appearance: auto # Default value is auto
+
+# Miscellaneous
+favicon: images/favicon.ico
+
+friend_links:
+  - title: Google
+    link: https://www.google.com/
+  - title: Github
+    link: https://www.github.com/
+  - title: V2EX
+    link: https://v2ex.com/
+  - title: Twitter
+    link: https://twitter.com/
+
+# Google Analytics
+ga_track_id: G-YXWYN8RP65
+ga_domain: shiyf.me
+
+# Baidu Analytics
+ba_track_id:
+
+# picture of about page
+about_pic: about.png
+
+image_zoom:
+  enable: true
