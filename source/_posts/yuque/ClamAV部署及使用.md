@@ -2,8 +2,10 @@
 title: ClamAV部署及使用
 urlname: gew51xlnpitb9lhc
 date: '2023-02-06 18:23:45 +0800'
-tags: []
-categories: []
+tags: 
+  - linux
+  - docker
+categories: [Tools]
 ---
 
 # 安装
