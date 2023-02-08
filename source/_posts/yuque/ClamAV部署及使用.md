@@ -2,8 +2,12 @@
 title: ClamAV部署及使用
 urlname: gew51xlnpitb9lhc
 date: '2023-02-06 18:23:45 +0800'
-tags: []
-categories: []
+'-<br />title': ClamAV部署及使用
+tags:
+  - ClamAV
+  - 安全扫描
+categories:
+  - 工具使用
 ---
 
 # 安装
