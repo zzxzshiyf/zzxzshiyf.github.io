@@ -27,14 +27,14 @@ html(lang=config.language class= `appearance-${ appearance }`)
     <!-- End Google Analytics -->
 
     <!-- Baidu Analytics -->
-    if (theme.ba_track_id)
+    if(theme.ba_track_id)
       script.
         var _hmt = _hmt || [];
         (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?" + '#{theme.ba_track_id}';
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d2db70b0265d334560fb9542ef3f79b6";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
         })();
     <!-- End Baidu Analytics -->
 
