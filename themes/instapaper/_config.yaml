@@ -1,8 +1,8 @@
 comment:
   gitalk:
     enable: true
-    owner: zzxzsyf@126.com
-    admin: zzxzsyf@126.com
+    owner: zzxzshiyf
+    admin: zzxzshiyf
     repo: zzxzshiyf.github.io
     ClientID: 3ff072ffe494ee372a26
     ClientSecret: 8869d9b49e0156aace1cee9f7524c4468c87a609
