@@ -1,0 +1,11 @@
+footer.footer-page {
+  height: 50px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    display: inline-block;
+    margin-left: 5px;
+  }
+}

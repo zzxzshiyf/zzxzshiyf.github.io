@@ -1,0 +1,220 @@
+.post-page {
+  position: relative;
+  padding-bottom: 60px;
+  .title-bar {
+    margin-bottom: 30px;
+    padding-top: 20px;
+  }
+  h1 {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 46px;
+    margin-bottom: 12px;
+    margin-top: 0;
+    color: var(--text-title-color);
+  }
+  .feature-img {
+    img {
+      max-width: 100%;
+    }
+  }
+  p {
+    color: var(--article-text-color);
+    font-size: 18px;
+  }
+  .img-caption {
+    font-size: 14px;
+    text-align: center;
+    display: block;
+  }
+  .post-info {
+    color: var(--post-info-color);
+    display: flex;
+    align-items: center;
+    .tags {
+      display: inline-block;
+      margin-left: 6px;
+      a {
+        margin: 0 3px;
+        color: var(--post-info-color);
+        &:hover,
+        &:active {
+          color: var(--link-active-color);
+        }
+      }
+    }
+  }
+  img {
+    max-width: 90%;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto 6px;
+    &.img-loading {
+      height: 200px;
+      width: 90%;
+      background-color: var(--img-bg-color);
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  }
+  .video-container {
+    height: 0;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding-top: 75%;
+    position: relative;
+    width: 100%;
+    iframe,
+    object,
+    embed {
+      height: 100%;
+      left: 0;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+  .post-pager {
+    border-top: 1px dashed #ececec;
+    border-color: var(--border-color);
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+      flex-basis: 48%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      &.next {
+        text-align: right;
+      }
+      &.pre {
+        text-align: left;
+      }
+    }
+    a {
+      color: var(--post-link-color);
+      &:hover,
+      &:active {
+        color: var(--link-active-color);
+      }
+    }
+  }
+  a {
+    color: var(--post-link-color);
+    &:hover,
+    &:active {
+      color: var(--link-active-color);
+    }
+  }
+  .copyright-wrapper {
+    border-top: 1px dashed #ececec;
+    border-color: var(--border-color);
+    padding: 10px 0;
+    p {
+      margin: 7px 0;
+      font-size: 14px;
+    }
+    a {
+      color: var(--post-link-color);
+      border-bottom: 1px dashed #ececec;
+      border-color: var(--border-color);
+      &:hover,
+      &:active {
+        color: var(--link-active-color);
+      }
+    }
+  }
+  ul,
+  ol {
+    padding-left: 30px;
+    li {
+      list-style: initial;
+      line-height: 34px;
+    }
+  }
+  ol li {
+    list-style: auto;
+  }
+  dt,
+  dd {
+    line-height: 34px;
+  }
+  dd {
+    padding-left: 30px;
+  }
+  table {
+    border-collapse: collapse;
+    th,
+    td {
+      border: 1px solid #ddd;
+      border-color: var(--border-color);
+    }
+    th {
+      height: 32px;
+      vertical-align: middle;
+      padding: 6px;
+    }
+    td {
+      text-align: center;
+      vertical-align: center;
+      padding: 6px;
+    }
+  }
+  .highlight {
+    table {
+      border: 0;
+      margin: 0;
+      width: auto;
+    }
+    td {
+      text-align: left;
+      border: 0;
+      padding: 0;
+    }
+  }
+  blockquote {
+    border-left: 4px solid #ddd;
+    border-color: var(--border-color);
+    margin: 0;
+    padding: 0 15px;
+  }
+  .caption {
+    background-color: var(--caption-bg-color);
+    line-height: 30px;
+    padding: 0 8px;
+    display: flex;
+    justify-content: space-between;
+    a {
+      color: var(--post-link-color);
+      &:hover,
+      &:active {
+        color: var(--link-active-color);
+      }
+    }
+  }
+  mark {
+    background: none;
+  }
+  strong,
+  cite {
+    color: var(--article-text-color);
+  }
+  cite {
+    margin-left: 10px;
+  }
+  code {
+    background-color: var(--code-bg-color);
+    color: var(--code-color);
+    padding: 3px;
+    line-height: 35px;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  iframe {
+    width: 100%;
+  }
+}
